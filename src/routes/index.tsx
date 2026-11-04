@@ -181,7 +181,7 @@ function Index() {
                     ["upi", "📱 UPI (GPay / PhonePe / Paytm)"],
                     ["card", "💳 Debit / Credit Card"],
                     ["cod", "💵 Cash on Delivery"],
-                  ].map(([v, t]) => (
+                  ].map(([v = "", t]) => (
                     <label key={v} className={`flex cursor-pointer items-center gap-2 rounded-lg border p-3 ${form.pay === v ? "border-primary bg-secondary" : "bg-card"}`}>
                       <input type="radio" name="pay" checked={form.pay === v} onChange={() => setForm({ ...form, pay: v })} /> {t}
                     </label>
