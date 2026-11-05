@@ -19,6 +19,8 @@ export const Route = createFileRoute("/")({
 
 type CartLine = { key: string; name: string; size: string; price: number; qty: number };
 const rs = (n: number) => `₹${n}`;
+
+function Index() {
   const [cart, setCart] = useState<Record<string, CartLine>>({});
   const [cat, setCat] = useState("all");
   const [q, setQ] = useState("");
