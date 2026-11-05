@@ -57,7 +57,7 @@ function Index() {
   );
 
   const upiId = "chainashta@upi";
-  const upiLink = `upi://pay?pa=${upiId}&pn=${encodeURIComponent("Chai Nashta Corner")}&am=${total}&cu=INR&tn=${encodeURIComponent("Nashta Order")}`;
+  const upiLink = `upi://pay?pa=${upiId}&pn=${encodeURIComponent("Chai Nashta Corner")}&am=${total}&cu=INR&tn=${encodeURIComponent("Snacks Order")}`;
   useEffect(() => {
     if (form.pay !== "upi") return;
     let alive = true;
@@ -196,10 +196,10 @@ function Index() {
             {step === "checkout" && (
               <form onSubmit={placeOrder} className="flex min-h-0 flex-1 flex-col">
                 <div className="min-h-0 flex-1 space-y-3 overflow-y-auto p-4">
-                  <input required placeholder="Aapka naam" value={form.name} onChange={(e) => setForm({ ...form, name: e.target.value })} className="w-full rounded-lg border bg-card px-3 py-2" />
-                  <input required pattern="[0-9]{10}" title="10 ank ka mobile number" placeholder="Mobile number (10 ank)" value={form.phone} onChange={(e) => setForm({ ...form, phone: e.target.value })} className="w-full rounded-lg border bg-card px-3 py-2" />
-                  <textarea required placeholder="Pura address" value={form.address} onChange={(e) => setForm({ ...form, address: e.target.value })} className="w-full rounded-lg border bg-card px-3 py-2" rows={3} />
-                  <p className="pt-2 font-semibold">Payment kaise karenge?</p>
+                  <input required placeholder="Your name" value={form.name} onChange={(e) => setForm({ ...form, name: e.target.value })} className="w-full rounded-lg border bg-card px-3 py-2" />
+                  <input required pattern="[0-9]{10}" title="Enter a 10-digit mobile number" placeholder="Mobile number (10 digits)" value={form.phone} onChange={(e) => setForm({ ...form, phone: e.target.value })} className="w-full rounded-lg border bg-card px-3 py-2" />
+                  <textarea required placeholder="Full address" value={form.address} onChange={(e) => setForm({ ...form, address: e.target.value })} className="w-full rounded-lg border bg-card px-3 py-2" rows={3} />
+                  <p className="pt-2 font-semibold">How will you pay?</p>
                   {[
                     ["upi", "📱 UPI (GPay / PhonePe / Paytm)"],
                     ["card", "💳 Debit / Credit Card"],
@@ -214,33 +214,33 @@ function Index() {
                       <div className="flex items-center justify-between gap-2">
                         <span>UPI ID: <b>{upiId}</b></span>
                         <button type="button" onClick={copyUpi} className="rounded-full border px-3 py-1 text-xs font-semibold">
-                          {copied ? "✓ Copy ho gaya" : "Copy karein"}
+                          {copied ? "✓ Copied" : "Copy"}
                         </button>
                       </div>
                       {qr && (
                         <div className="flex flex-col items-center gap-1 rounded-lg bg-secondary p-3">
                           <img src={qr} alt={`UPI QR code – ${rs(total)}`} width={180} height={180} className="rounded-md bg-background" />
-                          <p className="text-xs font-semibold text-primary">Kul rashi: {rs(total)}</p>
-                          <p className="text-xs text-muted-foreground">Phone camera se scan kijiye — GPay, PhonePe ya Paytm me khul jayega</p>
+                          <p className="text-xs font-semibold text-primary">Total: {rs(total)}</p>
+                          <p className="text-xs text-muted-foreground">Scan with your phone camera — it opens in GPay, PhonePe or Paytm</p>
                         </div>
                       )}
                       <a
                         href={upiLink}
                         className="flex items-center justify-center gap-2 rounded-full bg-primary py-2 font-bold text-primary-foreground"
                       >
-                        📲 UPI app me kholein · {rs(total)}
+                        📲 Pay via UPI app · {rs(total)}
                       </a>
                       <details className="rounded-lg border bg-secondary p-3">
-                        <summary className="cursor-pointer font-semibold">Copy karke bhejna hai? Ye 4 step lijiye</summary>
+                        <summary className="cursor-pointer font-semibold">Sending after copying? Follow these 4 steps</summary>
                         <ol className="mt-2 list-decimal space-y-1 pl-5 text-xs">
-                          <li>Upar <b>Copy karein</b> dabaiye — UPI ID phone me copy ho jayegi.</li>
-                          <li>GPay / PhonePe / Paytm app kholiye aur <b>Send / Pay</b> par jaiye.</li>
-                          <li><b>UPI ID</b> wale option me paste kijiye (<b>chainashta@upi</b>).</li>
-                          <li>Rashi <b>{rs(total)}</b> daal kar apna 4 anko ka pin daaliye — ho gaya!</li>
+                          <li>Tap <b>Copy</b> above — the UPI ID will be copied to your phone.</li>
+                          <li>Open the GPay / PhonePe / Paytm app and go to <b>Send / Pay</b>.</li>
+                          <li>Paste it in the <b>UPI ID</b> option (<b>chainashta@upi</b>).</li>
+                          <li>Enter <b>{rs(total)}</b> and your 4-digit PIN — done!</li>
                         </ol>
                       </details>
                       <p className="text-xs text-muted-foreground">
-                        Button dabane par aapke phone me payment app ka list khulega — GPay, PhonePe ya Paytm chuniye aur pin daaliye.
+                        Tapping the button opens a list of payment apps on your phone — choose GPay, PhonePe or Paytm and enter your PIN.
                       </p>
                     </div>
                   )}
@@ -256,9 +256,9 @@ function Index() {
                 </div>
                 <Summary subtotal={subtotal} delivery={delivery} total={total}>
                   <div className="flex gap-2">
-                    <button type="button" onClick={() => setStep("cart")} className="rounded-full border px-4 py-3">← Wapas</button>
+                    <button type="button" onClick={() => setStep("cart")} className="rounded-full border px-4 py-3">← Back</button>
                     <button className="flex-1 rounded-full bg-primary py-3 font-bold text-primary-foreground">
-                      {form.pay === "cod" ? "Order Place Karein" : `${rs(total)} Pay Karein`}
+                      {form.pay === "cod" ? "Place Order" : `Pay ${rs(total)}`}
                     </button>
                   </div>
                 </Summary>
@@ -268,12 +268,12 @@ function Index() {
             {step === "done" && (
               <div className="flex flex-1 flex-col items-center justify-center p-6 text-center">
                 <div className="text-6xl">🎉</div>
-                <h4 className="mt-4 font-display text-3xl">Dhanyavaad, {form.name}!</h4>
+                <h4 className="mt-4 font-display text-3xl">Thank you, {form.name}!</h4>
                 <p className="mt-2 text-muted-foreground">Order ID: <b className="text-foreground">{orderId}</b></p>
-                <p className="mt-1">Kul rashi: <b>{rs(total)}</b> · {form.pay === "cod" ? "Cash on Delivery" : "Payment safal"}</p>
-                <p className="mt-1 text-sm text-muted-foreground">Aapka nashta 30 minute me {form.address} par pahunch jayega.</p>
+                <p className="mt-1">Total: <b>{rs(total)}</b> · {form.pay === "cod" ? "Cash on Delivery" : "Payment successful"}</p>
+                <p className="mt-1 text-sm text-muted-foreground">Your snacks will reach {form.address} within 30 minutes.</p>
                 <button onClick={() => { setCart({}); setStep("cart"); setOpen(false); }} className="mt-6 rounded-full bg-primary px-6 py-3 font-bold text-primary-foreground">
-                  Naya order karein
+                  Start a new order
                 </button>
               </div>
             )}
