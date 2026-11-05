@@ -1,5 +1,5 @@
 import { createFileRoute } from "@tanstack/react-router";
-import { useMemo, useState } from "react";
+import { useEffect, useMemo, useState } from "react";
 import hero from "@/assets/hero-snacks.jpg";
 import { MENU, DELIVERY_FEE, FREE_DELIVERY_ABOVE, type Item } from "@/lib/menu";
 
@@ -29,6 +29,7 @@ function Index() {
   const [form, setForm] = useState({ name: "", phone: "", address: "", pay: "upi" });
   const [orderId, setOrderId] = useState("");
   const [copied, setCopied] = useState(false);
+  const [qr, setQr] = useState("");
 
   const lines = Object.values(cart);
   const count = lines.reduce((a, l) => a + l.qty, 0);
