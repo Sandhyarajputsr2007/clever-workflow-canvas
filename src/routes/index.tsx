@@ -62,7 +62,7 @@ function Index() {
     if (form.pay !== "upi") return;
     let alive = true;
     import("qrcode")
-      .then((m) => m.default.toDataURL(upiLink, { width: 220, margin: 1 }))
+      .then((m) => m.default.toDataURL(upiLink, { width: 180, margin: 1 }))
       .then((d) => { if (alive) setQr(d); })
       .catch(() => {});
     return () => { alive = false; };
@@ -219,7 +219,7 @@ function Index() {
                       </div>
                       {qr && (
                         <div className="flex flex-col items-center gap-1 rounded-lg bg-secondary p-3">
-                          <img src={qr} alt={`UPI QR code – ${rs(total)}`} width={220} height={220} className="rounded-md bg-background" />
+                          <img src={qr} alt={`UPI QR code – ${rs(total)}`} width={180} height={180} className="rounded-md bg-background" />
                           <p className="text-xs font-semibold text-primary">Kul rashi: {rs(total)}</p>
                           <p className="text-xs text-muted-foreground">Phone camera se scan kijiye — GPay, PhonePe ya Paytm me khul jayega</p>
                         </div>
