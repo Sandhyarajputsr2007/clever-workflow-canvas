@@ -211,22 +211,37 @@ function Index() {
                     </label>
                   ))}
                   {form.pay === "upi" && (
-                    <div className="space-y-2 rounded-lg border border-primary bg-card p-3 text-sm">
+                    <div className="space-y-3 rounded-lg border border-primary bg-card p-3 text-sm">
                       <div className="flex items-center justify-between gap-2">
                         <span>UPI ID: <b>{upiId}</b></span>
                         <button type="button" onClick={copyUpi} className="rounded-full border px-3 py-1 text-xs font-semibold">
                           {copied ? "✓ Copy ho gaya" : "Copy karein"}
                         </button>
                       </div>
+                      {qr && (
+                        <div className="flex flex-col items-center gap-1 rounded-lg bg-secondary p-3">
+                          <img src={qr} alt={`UPI QR code – ${rs(total)}`} width={220} height={220} className="rounded-md bg-background" />
+                          <p className="text-xs font-semibold text-primary">Kul rashi: {rs(total)}</p>
+                          <p className="text-xs text-muted-foreground">Phone camera se scan kijiye — GPay, PhonePe ya Paytm me khul jayega</p>
+                        </div>
+                      )}
                       <a
                         href={upiLink}
                         className="flex items-center justify-center gap-2 rounded-full bg-primary py-2 font-bold text-primary-foreground"
                       >
                         📲 UPI app me kholein · {rs(total)}
                       </a>
+                      <details className="rounded-lg border bg-secondary p-3">
+                        <summary className="cursor-pointer font-semibold">Copy karke bhejna hai? Ye 4 step lijiye</summary>
+                        <ol className="mt-2 list-decimal space-y-1 pl-5 text-xs">
+                          <li>Upar <b>Copy karein</b> dabaiye — UPI ID phone me copy ho jayegi.</li>
+                          <li>GPay / PhonePe / Paytm app kholiye aur <b>Send / Pay</b> par jaiye.</li>
+                          <li><b>UPI ID</b> wale option me paste kijiye (<b>chainashta@upi</b>).</li>
+                          <li>Rashi <b>{rs(total)}</b> daal kar apna 4 anko ka pin daaliye — ho gaya!</li>
+                        </ol>
+                      </details>
                       <p className="text-xs text-muted-foreground">
-                        Button dabane par aapke phone me GPay / PhonePe / Paytm khulega aur {rs(total)} pehle se bhara hoga — sirf pin daaliye.
-                        Agar app na khule to UPI ID copy karke manually bhej sakte hain.
+                        Button dabane par aapke phone me payment app ka list khulega — GPay, PhonePe ya Paytm chuniye aur pin daaliye.
                       </p>
                     </div>
                   )}
