@@ -173,7 +173,7 @@ function Index() {
 
             {step === "cart" && (
               <>
-                <div className="flex-1 space-y-3 overflow-y-auto p-4">
+                <div className="min-h-0 flex-1 space-y-3 overflow-y-auto p-4">
                   {lines.length === 0 && <p className="text-muted-foreground">Cart khaali hai. Kuch tasty chuniye!</p>}
                   {lines.map((l) => (
                     <div key={l.key} className="flex items-center justify-between rounded-xl border bg-card p-3">
@@ -195,7 +195,7 @@ function Index() {
 
             {step === "checkout" && (
               <form onSubmit={placeOrder} className="flex flex-1 flex-col">
-                <div className="flex-1 space-y-3 overflow-y-auto p-4">
+                <div className="min-h-0 flex-1 space-y-3 overflow-y-auto p-4">
                   <input required placeholder="Aapka naam" value={form.name} onChange={(e) => setForm({ ...form, name: e.target.value })} className="w-full rounded-lg border bg-card px-3 py-2" />
                   <input required pattern="[0-9]{10}" title="10 ank ka mobile number" placeholder="Mobile number (10 ank)" value={form.phone} onChange={(e) => setForm({ ...form, phone: e.target.value })} className="w-full rounded-lg border bg-card px-3 py-2" />
                   <textarea required placeholder="Pura address" value={form.address} onChange={(e) => setForm({ ...form, address: e.target.value })} className="w-full rounded-lg border bg-card px-3 py-2" rows={3} />
