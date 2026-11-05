@@ -6,10 +6,10 @@ import { MENU, DELIVERY_FEE, FREE_DELIVERY_ABOVE, type Item } from "@/lib/menu";
 export const Route = createFileRoute("/")({
   head: () => ({
     meta: [
-      { title: "Chai Nashta Corner – Online Samosa, Chai, Biscuit & Namkeen" },
-      { name: "description", content: "Samosa, pakodi, bread, chai, coffee, biscuit aur namkeen packet online order karein. Chhote aur bade packet ke daam ke saath." },
-      { property: "og:title", content: "Chai Nashta Corner – Online Order" },
-      { property: "og:description", content: "Garam nashta, chai-coffee, biscuit aur namkeen ghar baithe mangaiye." },
+      { title: "Chai Nashta Corner – Order Samosa, Chai, Biscuits & Namkeen Online" },
+      { name: "description", content: "Order samosa, pakodi, bread, chai, coffee, biscuits and namkeen packets online. Small and large packets with clear prices." },
+      { property: "og:title", content: "Chai Nashta Corner – Order Online" },
+      { property: "og:description", content: "Hot snacks, chai-coffee, biscuits and namkeen delivered to your home." },
       { property: "og:type", content: "website" },
       { name: "twitter:card", content: "summary_large_image" },
     ],
@@ -57,7 +57,7 @@ function Index() {
   );
 
   const upiId = "chainashta@upi";
-  const upiLink = `upi://pay?pa=${upiId}&pn=${encodeURIComponent("Chai Nashta Corner")}&am=${total}&cu=INR&tn=${encodeURIComponent("Nashta Order")}`;
+  const upiLink = `upi://pay?pa=${upiId}&pn=${encodeURIComponent("Chai Nashta Corner")}&am=${total}&cu=INR&tn=${encodeURIComponent("Snacks Order")}`;
   useEffect(() => {
     if (form.pay !== "upi") return;
     let alive = true;
@@ -98,22 +98,22 @@ function Index() {
       </header>
 
       <section className="relative">
-        <img src={hero} alt="Chai, samosa, pakoda, biscuit aur namkeen" width={1600} height={912} className="h-[420px] w-full object-cover" />
+        <img src={hero} alt="Chai, samosa, pakoda, biscuits and namkeen" width={1600} height={912} className="h-[420px] w-full object-cover" />
         <div className="absolute inset-0 bg-gradient-to-r from-foreground/85 via-foreground/50 to-transparent" />
         <div className="absolute inset-0 mx-auto flex max-w-6xl flex-col justify-center px-4 text-background">
-          <p className="font-semibold uppercase tracking-widest text-accent">Garma Garam · Taaza · Sasta</p>
-          <h1 className="mt-2 max-w-xl font-display text-5xl leading-tight md:text-6xl">Chai ke saath nashta, ab online!</h1>
-          <p className="mt-3 max-w-lg text-lg opacity-90">Samosa, pakodi, bread, chai, coffee, biscuit aur namkeen — chhota ya bada packet chuniye, order kijiye.</p>
-          <a href="#menu" className="mt-6 w-fit rounded-full bg-accent px-6 py-3 font-bold text-accent-foreground">Menu dekhiye →</a>
+          <p className="font-semibold uppercase tracking-widest text-accent">Hot · Fresh · Affordable</p>
+          <h1 className="mt-2 max-w-xl font-display text-5xl leading-tight md:text-6xl">Chai and snacks, now online!</h1>
+          <p className="mt-3 max-w-lg text-lg opacity-90">Samosa, pakodi, bread, chai, coffee, biscuits and namkeen — choose a small or large packet and place your order.</p>
+          <a href="#menu" className="mt-6 w-fit rounded-full bg-accent px-6 py-3 font-bold text-accent-foreground">View Menu →</a>
         </div>
       </section>
 
       <section className="mx-auto grid max-w-6xl gap-4 px-4 py-10 md:grid-cols-4">
         {[
-          ["1", "Item chuniye", "Chhota ya bada packet select karein"],
-          ["2", "Cart me daaliye", "Quantity + / − se badhaiye"],
-          ["3", "Pata bhariye", "Naam, mobile aur address"],
-          ["4", "Payment kijiye", "UPI, Card ya Cash on Delivery"],
+          ["1", "Pick an item", "Choose a small or large packet"],
+          ["2", "Add to cart", "Increase quantity with + / −"],
+          ["3", "Enter your details", "Name, mobile and address"],
+          ["4", "Make payment", "UPI, Card or Cash on Delivery"],
         ].map(([n, t, d]) => (
           <div key={n} className="rounded-2xl border bg-card p-5">
             <div className="flex h-10 w-10 items-center justify-center rounded-full bg-primary font-bold text-primary-foreground">{n}</div>
@@ -125,16 +125,16 @@ function Index() {
 
       <main id="menu" className="mx-auto max-w-6xl px-4 pb-24">
         <div className="flex flex-col gap-3 md:flex-row md:items-center md:justify-between">
-          <h2 className="font-display text-4xl">Hamara Menu</h2>
+          <h2 className="font-display text-4xl">Our Menu</h2>
           <input
             value={q}
             onChange={(e) => setQ(e.target.value)}
-            placeholder="🔍 Khojiye: Parle-G, Moong Dal..."
+            placeholder="🔍 Search: Parle-G, Moong Dal..."
             className="w-full rounded-full border bg-card px-4 py-2 md:w-80"
           />
         </div>
         <div className="mt-4 flex flex-wrap gap-2">
-          {[{ id: "all", title: "Sab", emoji: "⭐" }, ...MENU].map((c) => (
+          {[{ id: "all", title: "All", emoji: "⭐" }, ...MENU].map((c) => (
             <button
               key={c.id}
               onClick={() => setCat(c.id)}
@@ -153,11 +153,11 @@ function Index() {
             </div>
           </section>
         ))}
-        {cats.length === 0 && <p className="mt-10 text-muted-foreground">Koi item nahi mila.</p>}
+        {cats.length === 0 && <p className="mt-10 text-muted-foreground">No items found.</p>}
       </main>
 
       <footer className="border-t bg-secondary py-8 text-center text-sm text-muted-foreground">
-        ₹{FREE_DELIVERY_ABOVE}+ ke order par free delivery · Khula: subah 7 se raat 10 baje tak
+        Free delivery on orders above ₹{FREE_DELIVERY_ABOVE} · Open: 7 AM to 10 PM
         <br />© 2026 Chai Nashta Corner
       </footer>
 
@@ -166,7 +166,7 @@ function Index() {
           <div className="flex h-full w-full max-w-md flex-col bg-background" onClick={(e) => e.stopPropagation()}>
             <div className="flex items-center justify-between border-b p-4">
               <h3 className="font-display text-2xl">
-                {step === "cart" ? "Aapka Cart" : step === "checkout" ? "Order Details" : "Order Ho Gaya!"}
+                {step === "cart" ? "Your Cart" : step === "checkout" ? "Order Details" : "Order Placed!"}
               </h3>
               <button onClick={() => setOpen(false)} className="text-2xl">✕</button>
             </div>
@@ -174,7 +174,7 @@ function Index() {
             {step === "cart" && (
               <>
                 <div className="min-h-0 flex-1 space-y-3 overflow-y-auto p-4">
-                  {lines.length === 0 && <p className="text-muted-foreground">Cart khaali hai. Kuch tasty chuniye!</p>}
+                  {lines.length === 0 && <p className="text-muted-foreground">Your cart is empty. Pick something tasty!</p>}
                   {lines.map((l) => (
                     <div key={l.key} className="flex items-center justify-between rounded-xl border bg-card p-3">
                       <div>
@@ -187,7 +187,7 @@ function Index() {
                 </div>
                 <Summary subtotal={subtotal} delivery={delivery} total={total}>
                   <button disabled={!count} onClick={() => setStep("checkout")} className="w-full rounded-full bg-primary py-3 font-bold text-primary-foreground disabled:opacity-40">
-                    Aage badhein →
+                    Proceed →
                   </button>
                 </Summary>
               </>
@@ -196,10 +196,10 @@ function Index() {
             {step === "checkout" && (
               <form onSubmit={placeOrder} className="flex min-h-0 flex-1 flex-col">
                 <div className="min-h-0 flex-1 space-y-3 overflow-y-auto p-4">
-                  <input required placeholder="Aapka naam" value={form.name} onChange={(e) => setForm({ ...form, name: e.target.value })} className="w-full rounded-lg border bg-card px-3 py-2" />
-                  <input required pattern="[0-9]{10}" title="10 ank ka mobile number" placeholder="Mobile number (10 ank)" value={form.phone} onChange={(e) => setForm({ ...form, phone: e.target.value })} className="w-full rounded-lg border bg-card px-3 py-2" />
-                  <textarea required placeholder="Pura address" value={form.address} onChange={(e) => setForm({ ...form, address: e.target.value })} className="w-full rounded-lg border bg-card px-3 py-2" rows={3} />
-                  <p className="pt-2 font-semibold">Payment kaise karenge?</p>
+                  <input required placeholder="Your name" value={form.name} onChange={(e) => setForm({ ...form, name: e.target.value })} className="w-full rounded-lg border bg-card px-3 py-2" />
+                  <input required pattern="[0-9]{10}" title="Enter a 10-digit mobile number" placeholder="Mobile number (10 digits)" value={form.phone} onChange={(e) => setForm({ ...form, phone: e.target.value })} className="w-full rounded-lg border bg-card px-3 py-2" />
+                  <textarea required placeholder="Full address" value={form.address} onChange={(e) => setForm({ ...form, address: e.target.value })} className="w-full rounded-lg border bg-card px-3 py-2" rows={3} />
+                  <p className="pt-2 font-semibold">How will you pay?</p>
                   {[
                     ["upi", "📱 UPI (GPay / PhonePe / Paytm)"],
                     ["card", "💳 Debit / Credit Card"],
@@ -214,33 +214,33 @@ function Index() {
                       <div className="flex items-center justify-between gap-2">
                         <span>UPI ID: <b>{upiId}</b></span>
                         <button type="button" onClick={copyUpi} className="rounded-full border px-3 py-1 text-xs font-semibold">
-                          {copied ? "✓ Copy ho gaya" : "Copy karein"}
+                          {copied ? "✓ Copied" : "Copy"}
                         </button>
                       </div>
                       {qr && (
                         <div className="flex flex-col items-center gap-1 rounded-lg bg-secondary p-3">
                           <img src={qr} alt={`UPI QR code – ${rs(total)}`} width={180} height={180} className="rounded-md bg-background" />
-                          <p className="text-xs font-semibold text-primary">Kul rashi: {rs(total)}</p>
-                          <p className="text-xs text-muted-foreground">Phone camera se scan kijiye — GPay, PhonePe ya Paytm me khul jayega</p>
+                          <p className="text-xs font-semibold text-primary">Total: {rs(total)}</p>
+                          <p className="text-xs text-muted-foreground">Scan with your phone camera — it opens in GPay, PhonePe or Paytm</p>
                         </div>
                       )}
                       <a
                         href={upiLink}
                         className="flex items-center justify-center gap-2 rounded-full bg-primary py-2 font-bold text-primary-foreground"
                       >
-                        📲 UPI app me kholein · {rs(total)}
+                        📲 Pay via UPI app · {rs(total)}
                       </a>
                       <details className="rounded-lg border bg-secondary p-3">
-                        <summary className="cursor-pointer font-semibold">Copy karke bhejna hai? Ye 4 step lijiye</summary>
+                        <summary className="cursor-pointer font-semibold">Sending after copying? Follow these 4 steps</summary>
                         <ol className="mt-2 list-decimal space-y-1 pl-5 text-xs">
-                          <li>Upar <b>Copy karein</b> dabaiye — UPI ID phone me copy ho jayegi.</li>
-                          <li>GPay / PhonePe / Paytm app kholiye aur <b>Send / Pay</b> par jaiye.</li>
-                          <li><b>UPI ID</b> wale option me paste kijiye (<b>chainashta@upi</b>).</li>
-                          <li>Rashi <b>{rs(total)}</b> daal kar apna 4 anko ka pin daaliye — ho gaya!</li>
+                          <li>Tap <b>Copy</b> above — the UPI ID will be copied to your phone.</li>
+                          <li>Open the GPay / PhonePe / Paytm app and go to <b>Send / Pay</b>.</li>
+                          <li>Paste it in the <b>UPI ID</b> option (<b>chainashta@upi</b>).</li>
+                          <li>Enter <b>{rs(total)}</b> and your 4-digit PIN — done!</li>
                         </ol>
                       </details>
                       <p className="text-xs text-muted-foreground">
-                        Button dabane par aapke phone me payment app ka list khulega — GPay, PhonePe ya Paytm chuniye aur pin daaliye.
+                        Tapping the button opens a list of payment apps on your phone — choose GPay, PhonePe or Paytm and enter your PIN.
                       </p>
                     </div>
                   )}
@@ -256,9 +256,9 @@ function Index() {
                 </div>
                 <Summary subtotal={subtotal} delivery={delivery} total={total}>
                   <div className="flex gap-2">
-                    <button type="button" onClick={() => setStep("cart")} className="rounded-full border px-4 py-3">← Wapas</button>
+                    <button type="button" onClick={() => setStep("cart")} className="rounded-full border px-4 py-3">← Back</button>
                     <button className="flex-1 rounded-full bg-primary py-3 font-bold text-primary-foreground">
-                      {form.pay === "cod" ? "Order Place Karein" : `${rs(total)} Pay Karein`}
+                      {form.pay === "cod" ? "Place Order" : `Pay ${rs(total)}`}
                     </button>
                   </div>
                 </Summary>
@@ -268,12 +268,12 @@ function Index() {
             {step === "done" && (
               <div className="flex flex-1 flex-col items-center justify-center p-6 text-center">
                 <div className="text-6xl">🎉</div>
-                <h4 className="mt-4 font-display text-3xl">Dhanyavaad, {form.name}!</h4>
+                <h4 className="mt-4 font-display text-3xl">Thank you, {form.name}!</h4>
                 <p className="mt-2 text-muted-foreground">Order ID: <b className="text-foreground">{orderId}</b></p>
-                <p className="mt-1">Kul rashi: <b>{rs(total)}</b> · {form.pay === "cod" ? "Cash on Delivery" : "Payment safal"}</p>
-                <p className="mt-1 text-sm text-muted-foreground">Aapka nashta 30 minute me {form.address} par pahunch jayega.</p>
+                <p className="mt-1">Total: <b>{rs(total)}</b> · {form.pay === "cod" ? "Cash on Delivery" : "Payment successful"}</p>
+                <p className="mt-1 text-sm text-muted-foreground">Your snacks will reach {form.address} within 30 minutes.</p>
                 <button onClick={() => { setCart({}); setStep("cart"); setOpen(false); }} className="mt-6 rounded-full bg-primary px-6 py-3 font-bold text-primary-foreground">
-                  Naya order karein
+                  Start a new order
                 </button>
               </div>
             )}
