@@ -62,7 +62,7 @@ function Index() {
     if (form.pay !== "upi") return;
     let alive = true;
     import("qrcode")
-      .then((m) => m.default.toDataURL(upiLink, { width: 220, margin: 1 }))
+      .then((m) => m.default.toDataURL(upiLink, { width: 180, margin: 1 }))
       .then((d) => { if (alive) setQr(d); })
       .catch(() => {});
     return () => { alive = false; };
@@ -173,7 +173,7 @@ function Index() {
 
             {step === "cart" && (
               <>
-                <div className="flex-1 space-y-3 overflow-y-auto p-4">
+                <div className="min-h-0 flex-1 space-y-3 overflow-y-auto p-4">
                   {lines.length === 0 && <p className="text-muted-foreground">Cart khaali hai. Kuch tasty chuniye!</p>}
                   {lines.map((l) => (
                     <div key={l.key} className="flex items-center justify-between rounded-xl border bg-card p-3">
@@ -194,8 +194,8 @@ function Index() {
             )}
 
             {step === "checkout" && (
-              <form onSubmit={placeOrder} className="flex flex-1 flex-col">
-                <div className="flex-1 space-y-3 overflow-y-auto p-4">
+              <form onSubmit={placeOrder} className="flex min-h-0 flex-1 flex-col">
+                <div className="min-h-0 flex-1 space-y-3 overflow-y-auto p-4">
                   <input required placeholder="Aapka naam" value={form.name} onChange={(e) => setForm({ ...form, name: e.target.value })} className="w-full rounded-lg border bg-card px-3 py-2" />
                   <input required pattern="[0-9]{10}" title="10 ank ka mobile number" placeholder="Mobile number (10 ank)" value={form.phone} onChange={(e) => setForm({ ...form, phone: e.target.value })} className="w-full rounded-lg border bg-card px-3 py-2" />
                   <textarea required placeholder="Pura address" value={form.address} onChange={(e) => setForm({ ...form, address: e.target.value })} className="w-full rounded-lg border bg-card px-3 py-2" rows={3} />
@@ -219,7 +219,7 @@ function Index() {
                       </div>
                       {qr && (
                         <div className="flex flex-col items-center gap-1 rounded-lg bg-secondary p-3">
-                          <img src={qr} alt={`UPI QR code – ${rs(total)}`} width={220} height={220} className="rounded-md bg-background" />
+                          <img src={qr} alt={`UPI QR code – ${rs(total)}`} width={180} height={180} className="rounded-md bg-background" />
                           <p className="text-xs font-semibold text-primary">Kul rashi: {rs(total)}</p>
                           <p className="text-xs text-muted-foreground">Phone camera se scan kijiye — GPay, PhonePe ya Paytm me khul jayega</p>
                         </div>
