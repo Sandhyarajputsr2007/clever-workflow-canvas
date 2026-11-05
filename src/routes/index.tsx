@@ -28,6 +28,7 @@ function Index() {
   const [step, setStep] = useState<"cart" | "checkout" | "done">("cart");
   const [form, setForm] = useState({ name: "", phone: "", address: "", pay: "upi" });
   const [orderId, setOrderId] = useState("");
+  const [copied, setCopied] = useState(false);
 
   const lines = Object.values(cart);
   const count = lines.reduce((a, l) => a + l.qty, 0);
@@ -53,6 +54,18 @@ function Index() {
         .filter((c) => c.items.length),
     [cat, q],
   );
+
+  const upiId = "chainashta@upi";
+  const upiLink = `upi://pay?pa=${upiId}&pn=${encodeURIComponent("Chai Nashta Corner")}&am=${total}&cu=INR&tn=${encodeURIComponent("Nashta Order")}`;
+  const copyUpi = async () => {
+    try {
+      await navigator.clipboard.writeText(upiId);
+    } catch {
+      /* clipboard blocked - user can still read the ID */
+    }
+    setCopied(true);
+    setTimeout(() => setCopied(false), 2000);
+  };
 
   const placeOrder = (e: React.FormEvent) => {
     e.preventDefault();
