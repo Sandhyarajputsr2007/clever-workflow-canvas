@@ -6,10 +6,10 @@ import { MENU, DELIVERY_FEE, FREE_DELIVERY_ABOVE, type Item } from "@/lib/menu";
 export const Route = createFileRoute("/")({
   head: () => ({
     meta: [
-      { title: "Chai Nashta Corner – Online Samosa, Chai, Biscuit & Namkeen" },
-      { name: "description", content: "Samosa, pakodi, bread, chai, coffee, biscuit aur namkeen packet online order karein. Chhote aur bade packet ke daam ke saath." },
-      { property: "og:title", content: "Chai Nashta Corner – Online Order" },
-      { property: "og:description", content: "Garam nashta, chai-coffee, biscuit aur namkeen ghar baithe mangaiye." },
+      { title: "Chai Nashta Corner – Order Samosa, Chai, Biscuits & Namkeen Online" },
+      { name: "description", content: "Order samosa, pakodi, bread, chai, coffee, biscuits and namkeen packets online. Small and large packets with clear prices." },
+      { property: "og:title", content: "Chai Nashta Corner – Order Online" },
+      { property: "og:description", content: "Hot snacks, chai-coffee, biscuits and namkeen delivered to your home." },
       { property: "og:type", content: "website" },
       { name: "twitter:card", content: "summary_large_image" },
     ],
@@ -98,22 +98,22 @@ function Index() {
       </header>
 
       <section className="relative">
-        <img src={hero} alt="Chai, samosa, pakoda, biscuit aur namkeen" width={1600} height={912} className="h-[420px] w-full object-cover" />
+        <img src={hero} alt="Chai, samosa, pakoda, biscuits and namkeen" width={1600} height={912} className="h-[420px] w-full object-cover" />
         <div className="absolute inset-0 bg-gradient-to-r from-foreground/85 via-foreground/50 to-transparent" />
         <div className="absolute inset-0 mx-auto flex max-w-6xl flex-col justify-center px-4 text-background">
-          <p className="font-semibold uppercase tracking-widest text-accent">Garma Garam · Taaza · Sasta</p>
-          <h1 className="mt-2 max-w-xl font-display text-5xl leading-tight md:text-6xl">Chai ke saath nashta, ab online!</h1>
-          <p className="mt-3 max-w-lg text-lg opacity-90">Samosa, pakodi, bread, chai, coffee, biscuit aur namkeen — chhota ya bada packet chuniye, order kijiye.</p>
-          <a href="#menu" className="mt-6 w-fit rounded-full bg-accent px-6 py-3 font-bold text-accent-foreground">Menu dekhiye →</a>
+          <p className="font-semibold uppercase tracking-widest text-accent">Hot · Fresh · Affordable</p>
+          <h1 className="mt-2 max-w-xl font-display text-5xl leading-tight md:text-6xl">Chai and snacks, now online!</h1>
+          <p className="mt-3 max-w-lg text-lg opacity-90">Samosa, pakodi, bread, chai, coffee, biscuits and namkeen — choose a small or large packet and place your order.</p>
+          <a href="#menu" className="mt-6 w-fit rounded-full bg-accent px-6 py-3 font-bold text-accent-foreground">View Menu →</a>
         </div>
       </section>
 
       <section className="mx-auto grid max-w-6xl gap-4 px-4 py-10 md:grid-cols-4">
         {[
-          ["1", "Item chuniye", "Chhota ya bada packet select karein"],
-          ["2", "Cart me daaliye", "Quantity + / − se badhaiye"],
-          ["3", "Pata bhariye", "Naam, mobile aur address"],
-          ["4", "Payment kijiye", "UPI, Card ya Cash on Delivery"],
+          ["1", "Pick an item", "Choose a small or large packet"],
+          ["2", "Add to cart", "Increase quantity with + / −"],
+          ["3", "Enter your details", "Name, mobile and address"],
+          ["4", "Make payment", "UPI, Card or Cash on Delivery"],
         ].map(([n, t, d]) => (
           <div key={n} className="rounded-2xl border bg-card p-5">
             <div className="flex h-10 w-10 items-center justify-center rounded-full bg-primary font-bold text-primary-foreground">{n}</div>
@@ -125,16 +125,16 @@ function Index() {
 
       <main id="menu" className="mx-auto max-w-6xl px-4 pb-24">
         <div className="flex flex-col gap-3 md:flex-row md:items-center md:justify-between">
-          <h2 className="font-display text-4xl">Hamara Menu</h2>
+          <h2 className="font-display text-4xl">Our Menu</h2>
           <input
             value={q}
             onChange={(e) => setQ(e.target.value)}
-            placeholder="🔍 Khojiye: Parle-G, Moong Dal..."
+            placeholder="🔍 Search: Parle-G, Moong Dal..."
             className="w-full rounded-full border bg-card px-4 py-2 md:w-80"
           />
         </div>
         <div className="mt-4 flex flex-wrap gap-2">
-          {[{ id: "all", title: "Sab", emoji: "⭐" }, ...MENU].map((c) => (
+          {[{ id: "all", title: "All", emoji: "⭐" }, ...MENU].map((c) => (
             <button
               key={c.id}
               onClick={() => setCat(c.id)}
@@ -153,11 +153,11 @@ function Index() {
             </div>
           </section>
         ))}
-        {cats.length === 0 && <p className="mt-10 text-muted-foreground">Koi item nahi mila.</p>}
+        {cats.length === 0 && <p className="mt-10 text-muted-foreground">No items found.</p>}
       </main>
 
       <footer className="border-t bg-secondary py-8 text-center text-sm text-muted-foreground">
-        ₹{FREE_DELIVERY_ABOVE}+ ke order par free delivery · Khula: subah 7 se raat 10 baje tak
+        Free delivery on orders above ₹{FREE_DELIVERY_ABOVE} · Open: 7 AM to 10 PM
         <br />© 2026 Chai Nashta Corner
       </footer>
 
@@ -166,7 +166,7 @@ function Index() {
           <div className="flex h-full w-full max-w-md flex-col bg-background" onClick={(e) => e.stopPropagation()}>
             <div className="flex items-center justify-between border-b p-4">
               <h3 className="font-display text-2xl">
-                {step === "cart" ? "Aapka Cart" : step === "checkout" ? "Order Details" : "Order Ho Gaya!"}
+                {step === "cart" ? "Your Cart" : step === "checkout" ? "Order Details" : "Order Placed!"}
               </h3>
               <button onClick={() => setOpen(false)} className="text-2xl">✕</button>
             </div>
@@ -174,7 +174,7 @@ function Index() {
             {step === "cart" && (
               <>
                 <div className="min-h-0 flex-1 space-y-3 overflow-y-auto p-4">
-                  {lines.length === 0 && <p className="text-muted-foreground">Cart khaali hai. Kuch tasty chuniye!</p>}
+                  {lines.length === 0 && <p className="text-muted-foreground">Your cart is empty. Pick something tasty!</p>}
                   {lines.map((l) => (
                     <div key={l.key} className="flex items-center justify-between rounded-xl border bg-card p-3">
                       <div>
@@ -187,7 +187,7 @@ function Index() {
                 </div>
                 <Summary subtotal={subtotal} delivery={delivery} total={total}>
                   <button disabled={!count} onClick={() => setStep("checkout")} className="w-full rounded-full bg-primary py-3 font-bold text-primary-foreground disabled:opacity-40">
-                    Aage badhein →
+                    Proceed →
                   </button>
                 </Summary>
               </>
