@@ -58,7 +58,6 @@ function Index() {
 
   const upiId = "chainashta@upi";
   const upiLink = `upi://pay?pa=${upiId}&pn=${encodeURIComponent("Chai Nashta Corner")}&am=${total}&cu=INR&tn=${encodeURIComponent("Nashta Order")}`;
-  const [qr, setQr] = useState("");
   useEffect(() => {
     if (form.pay !== "upi") return;
     let alive = true;
