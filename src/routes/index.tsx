@@ -200,7 +200,24 @@ function Index() {
                     </label>
                   ))}
                   {form.pay === "upi" && (
-                    <div className="rounded-lg border bg-card p-3 text-sm">UPI ID: <b>chainashta@upi</b> par {rs(total)} bhejiye.</div>
+                    <div className="space-y-2 rounded-lg border border-primary bg-card p-3 text-sm">
+                      <div className="flex items-center justify-between gap-2">
+                        <span>UPI ID: <b>{upiId}</b></span>
+                        <button type="button" onClick={copyUpi} className="rounded-full border px-3 py-1 text-xs font-semibold">
+                          {copied ? "✓ Copy ho gaya" : "Copy karein"}
+                        </button>
+                      </div>
+                      <a
+                        href={upiLink}
+                        className="flex items-center justify-center gap-2 rounded-full bg-primary py-2 font-bold text-primary-foreground"
+                      >
+                        📲 UPI app me kholein · {rs(total)}
+                      </a>
+                      <p className="text-xs text-muted-foreground">
+                        Button dabane par aapke phone me GPay / PhonePe / Paytm khulega aur {rs(total)} pehle se bhara hoga — sirf pin daaliye.
+                        Agar app na khule to UPI ID copy karke manually bhej sakte hain.
+                      </p>
+                    </div>
                   )}
                   {form.pay === "card" && (
                     <div className="space-y-2">
