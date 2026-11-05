@@ -58,6 +58,16 @@ function Index() {
 
   const upiId = "chainashta@upi";
   const upiLink = `upi://pay?pa=${upiId}&pn=${encodeURIComponent("Chai Nashta Corner")}&am=${total}&cu=INR&tn=${encodeURIComponent("Nashta Order")}`;
+  const [qr, setQr] = useState("");
+  useEffect(() => {
+    if (form.pay !== "upi") return;
+    let alive = true;
+    import("qrcode")
+      .then((m) => m.default.toDataURL(upiLink, { width: 220, margin: 1 }))
+      .then((d) => { if (alive) setQr(d); })
+      .catch(() => {});
+    return () => { alive = false; };
+  }, [form.pay, upiLink]);
   const copyUpi = async () => {
     try {
       await navigator.clipboard.writeText(upiId);
